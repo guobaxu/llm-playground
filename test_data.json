@@ -1,0 +1,56 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "请分析以下反应场数据: {\"reaction_type\": \"oxidation\", \"conditions\": \"室温\", \"catalyst\": \"MnO2\"}"
+      }
+    ],
+    "output": {
+      "reaction_field": "氧化反应",
+      "conditions": "室温条件",
+      "catalyst": "MnO2催化剂"
+    },
+    "predict_output": {
+      "reaction_field": "氧化反应",
+      "conditions": "室温条件",
+      "catalyst": "MnO2催化剂"
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "分析这个还原反应: {\"reaction_type\": \"reduction\", \"conditions\": \"高温\", \"reducing_agent\": \"H2\"}"
+      }
+    ],
+    "output": {
+      "reaction_field": "还原反应",
+      "conditions": "高温条件",
+      "reducing_agent": "H2还原剂"
+    },
+    "predict_output": {
+      "reaction_field": "还原反应",
+      "conditions": "高温条件",
+      "reducing_agent": "H2还原剂"
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "请分析这个催化反应: {\"reaction_type\": \"catalysis\", \"conditions\": \"中温\", \"catalyst\": \"Pt\"}"
+      }
+    ],
+    "output": {
+      "reaction_field": "催化反应",
+      "conditions": "中温条件",
+      "catalyst": "Pt催化剂"
+    },
+    "predict_output": {
+      "reaction_field": "催化反应",
+      "conditions": "中温条件",
+      "catalyst": "Pt催化剂"
+    }
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "num_records": 4,
+  "fully_correct_records": 3,
+  "fully_correct_ratio": 0.75,
+  "total_recall": 3,
+  "total_ground_truth": 4,
+  "recall_rate": 0.75,
+  "total_correct": 3,
+  "total_predicted": 4,
+  "precision_rate": 0.75,
+  "model_name": "gpt-4",
+  "task_name": "ErrorEval_gpt-4"
+}

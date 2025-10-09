@@ -1,0 +1,13 @@
+{
+  "num_records": 41,
+  "fully_correct_records": 32,
+  "fully_correct_ratio": 0.780488,
+  "total_recall": 106,
+  "total_ground_truth": 122,
+  "recall_rate": 0.868852,
+  "total_correct": 106,
+  "total_predicted": 123,
+  "precision_rate": 0.861789,
+  "model_name": "QWEN25_14B",
+  "task_name": "ErrorEval_QWEN25_14B"
+}

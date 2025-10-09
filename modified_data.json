@@ -1,0 +1,847 @@
+[
+  {
+    "id": "page12.scheme0.idx_1",
+    "input": [
+      {
+        "role": "user",
+        "content": "{\n  \"compound_id\": \"\",\n  \"iupac_name\": \"3,5-dibromo-2-methylpyridin-4-ol\",\n  \"synthetic_description\": \"To a stirred solution of 2-methylpyridin-4-ol (8.0 g, 73 mmol)in dichloromethane (90 ml) and MeOH(11 ml) was added tert-butylamine (15.7 ml,148 mmol) and the mixture was cooled to 0 \\u0000b0C. Bromine (7.55 ml,147 mmol) was added dropwise over a 20 minute period. The reaction mixture was stirred at rt for 2 hours. Then the resulting slurry was filtered through a buchner funnel and the solid was washed with methanol (100 ml) and dried overnight to afford 3,5-dibromo-2-methylpyridin-4-ol (10g,37.5 mmol, 51.1% yield). LCMS Method 4:retention time = 0.704 min.; observed ion =267.8.lH NMR (500 MHz,DMSO-d6)\\u0012.33(brs,1H),8.21(s,1H),2.40(s,3H).\",\n  \"reference_synthetic_description\": \"\"\n}"
+      }
+    ],
+    "output": {
+      "action": "测试编辑功能 and dry",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "2-methylpyridin-4-ol",
+          "quantity": "8.0 g",
+          "moles": "73 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "temperature",
+          "value": "0°C (during bromine addition)"
+        },
+        {
+          "name": "duration",
+          "value": "20 min (bromine addition)"
+        },
+        {
+          "name": "temperature",
+          "value": "room temperature (after addition)"
+        },
+        {
+          "name": "duration",
+          "value": "2 hours (after addition)"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "tert-butylamine",
+          "quantity": "15.7 ml",
+          "moles": "148 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "bromine",
+          "quantity": "7.55 ml",
+          "moles": "147 mmol"
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "dichloromethane",
+          "quantity": "90 ml",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "methanol",
+          "quantity": "11 ml",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "3,5-dibromo-2-methylpyridin-4-ol",
+          "quantity": "10 g",
+          "moles": "37.5 mmol"
+        }
+      ],
+      "yield_": "51.1%",
+      "lcms": "LCMS Method 4: retention time = 0.704 min.; observed ion = 267.8",
+      "nmr": "1H NMR (500 MHz, DMSO-d6) 12.33 (brs, 1H), 8.21 (s, 1H), 2.40 (s, 3H)"
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": "",
+    "predict_output": {},
+    "last_modified": "2025-10-09 17:54:36"
+  },
+  {
+    "id": "page13.scheme0.idx_1",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"\", \"synthetic_description\": \"To a solution of 3,5-dibromo-2-methylpyridin-4-ol (13.5 g, 50.6 mmol) in POCl3 (13.7 ml,147 mmol) was added triethylamine (7.05 ml,50.6 mmol) at 0\\u00b0\\u2103 slowly over 30 min.After addition, the ice bath was removed and was stirred at 80\\u2103 for 1 h. The reaction mixture was cooled to rt and slowly quenched by adding it to crushed ice. The resulting slurry was diluted with DCM (250 mL) and slowly neutralized with 2M Na2CO3 solution. Once neutralized the layers were separated and the organic layer was dried (Na2SO4), filtered and concentrated to give 3,5-dibromo-4-chloro-2-methylpyridine (14 g,49 mmol, 97% yield) as a off white solid.LCMS Method 4:retention time =1.47 min.;observed ion =285.7. lH NMR (500 MHz, CHLOROFORM-d) \\u03b4 8.56 (s, 1H), 2.72 (s, 3H).\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "stir",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "3,5-dibromo-2-methylpyridin-4-ol",
+          "quantity": "13.5 g",
+          "moles": "50.6 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "temperature",
+          "value": "0°C"
+        },
+        {
+          "name": "addition duration",
+          "value": "30 min"
+        },
+        {
+          "name": "temperature",
+          "value": "80°C"
+        },
+        {
+          "name": "duration",
+          "value": "1 h"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "phosphoryl trichloride",
+          "quantity": "13.7 ml",
+          "moles": "147 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "triethylamine",
+          "quantity": "7.05 ml",
+          "moles": "50.6 mmol"
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "dichloromethane",
+          "quantity": "250 mL",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "3,5-dibromo-4-chloro-2-methylpyridine",
+          "quantity": "14 g",
+          "moles": "49 mmol"
+        }
+      ],
+      "yield_": "97%",
+      "lcms": "Method 4: retention time =1.47 min.; observed ion =285.7.",
+      "nmr": "1H NMR (500 MHz, CHLOROFORM-d) δ 8.56 (s, 1H), 2.72 (s, 3H)."
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page13.scheme1.idx_1",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"isopropyl 2-(5-bromo-4-chloro-2-methylpyridin-3-yl)-2-oxoacetate\", \"synthetic_description\": \"To a 25 mL RB flask equipped with a stir bar and placed under N2 was added THF (9ml) and 3,5-dibromo-4-chloro-2-methylpyridine(1.0g,3.5 mmol).The mixture was warmed to 60 \\u0000b0C. To the solution was added isopropylmagnesium chloride (2 M solution in THF)(1.8 ml, 3.7 mmol) dropwise at 60\\u0000b0C. The solution was stirred for 1 minute.Then, to the solution was added bis(methylthio)copper(III) bromide (83 mg, 0.350 mmol) (copper bromide dimethylsulfide complex) as a solid at once. The solution was stirred at rt for 5 min. Then, to a dry 50 mL rb flask equipped with a stir bar and placed under N2 atm was added THF (9 ml) and isopropyl 2-chloro-2-oxoacetate (580 mg,3.85 mmol). The flask was placed in a -78 \\u0000b0C bath and was stirred for 10 min. To the flask was added the organometallic suspension/solution prepared above via addition funnel. The mixture remained a suspension of fine black precipitate and a pale orange solution. The bath was allowed to warm to rt with stirring. LCMS analysis after 1.5h found a peak with the expected product mass. Then,to the reaction mixture was added diethanolamine (403 ul, 4.21 mmol,(the diethanolamine is expected to coordinate both the Cu and the Mg) The mixture was transfered to a separatory funnel using water and Et2O. The mixture was diluted with water and was extracted with Et2O. The combined organics were washed with brine; dried over Na2SO4 and filtered. The solution was concentraed in vacuo. The resulting residue was dissolved in a minimal of acetone and then concentrated onto celite in vacuo.The resulting powder was subjected to SiO2 purification.(Biotage,EtOAc/hexanes gradient, 0-40% over 10 CVs). The first peak to elute is the desired minor isomer: isopropyl 2-(5-bromo-4-chloro-2-methylpyridin-3-yl)-2-oxoacetate (186 mg, 0.580 mmol, 16.56% yield). LCMS Method 4:retention time=1.33 min.;observed ion =320.0,322.0 lH NMR (500 MHz, METHANOL-d4) \\u0003b 8.63 (s, 1H), 4.33 (spt, J=6.6 Hz, 1H),2.82 (s, 3H), 1.72 - 1.68 (m,6H).\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "add",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "3,5-dibromo-4-chloro-2-methylpyridine",
+          "quantity": "1.0g",
+          "moles": "3.5 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "isopropyl 2-chloro-2-oxoacetate",
+          "quantity": "580 mg",
+          "moles": "3.85 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "atmosphere",
+          "value": "N2"
+        },
+        {
+          "name": "temperature",
+          "value": "60 °C"
+        },
+        {
+          "name": "duration",
+          "value": "1 minute"
+        },
+        {
+          "name": "temperature",
+          "value": "rt"
+        },
+        {
+          "name": "duration",
+          "value": "5 min"
+        },
+        {
+          "name": "temperature",
+          "value": "-78 °C"
+        },
+        {
+          "name": "duration",
+          "value": "10 min"
+        },
+        {
+          "name": "duration",
+          "value": "1.5h"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "isopropylmagnesium chloride",
+          "quantity": "1.8 ml",
+          "moles": "3.7 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "bis(methylthio)copper(III) bromide",
+          "quantity": "83 mg",
+          "moles": "0.350 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "diethanolamine",
+          "quantity": "403 ul",
+          "moles": "4.21 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "water",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "Et2O",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "brine",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "Na2SO4",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "celite",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "SiO2",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "THF",
+          "quantity": "18 ml",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "acetone",
+          "quantity": "a minimal",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "EtOAc/hexanes",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "isopropyl 2-(5-bromo-4-chloro-2-methylpyridin-3-yl)-2-oxoacetate",
+          "quantity": "186 mg",
+          "moles": "0.580 mmol"
+        }
+      ],
+      "yield_": "16.56%",
+      "lcms": "Method 4:retention time=1.33 min.;observed ion =320.0,322.0",
+      "nmr": "1H NMR (500 MHz, METHANOL-d4) δ 8.63 (s, 1H), 4.33 (spt, J=6.6 Hz, 1H),2.82 (s, 3H), 1.72 - 1.68 (m,6H)."
+    },
+    "model": "Gemini",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page26.scheme0.idx_1",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"2-bromo-5-isobutoxypyridine\", \"synthetic_description\": \"To a 500 mL r.b. flask equipped with a large stir bar was added 6-bromopyridin-3-5 ol(10.0g,57.5 mmol),2-methylpropan-1-ol(4.26 g, 57.5 mmol),triphenylphosphine (15.8 g,60.3 mmol) and THF (192 ml). To the stirring solution was added DIAD (11.73 ml,60.3 mmol) and after 15 min the reaction solution was concentrated in vacuo. To the crude reaction product was added hexanes:Et2O(1:1,250 mL) and stirred.A signficant amount of crystalline material (Ph3PO) precipitated was removed via filtration. The filtrate was concentrated in vacuo and the residue was dissolved in a minimal of acetone and concentrated onto Celite. The resulting powder was subjected to SiO2 purifciation on the Biotage(120 g column) 0-100% 10 CVs to afford 2-bromo-5-isobutoxypyridine (12.7 g, 96%) as a clear oil. LCMS Method 4: retention time = 1.36 min.; observed ion =230.0, 232.0.lHNMR(500MHz,CHLOROFORM-d)88.07(d,J=3.0Hz,1H),7.44-7.25(m, 1H),7.11(dd,J=8.8,3.2Hz,1H),3.76(d,J=6.5Hz,2H),2.17-2.06(m,1H),1.05(d, J=6.8 Hz, 6H).\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "Stir, add, concentrate, filter, purify",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "6-bromopyridin-3-5 ol",
+          "quantity": "10.0 g",
+          "moles": "57.5 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "2-methylpropan-1-ol",
+          "quantity": "4.26 g",
+          "moles": "57.5 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "duration",
+          "value": "15 min"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "triphenylphosphine",
+          "quantity": "15.8 g",
+          "moles": "60.3 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "DIAD",
+          "quantity": "11.73 ml",
+          "moles": "60.3 mmol"
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "THF",
+          "quantity": "192 ml",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "hexanes",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "diethyl ether",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "acetone",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "2-bromo-5-isobutoxypyridine",
+          "quantity": "12.7 g",
+          "moles": ""
+        }
+      ],
+      "yield_": "96%",
+      "lcms": "LCMS Method 4: retention time = 1.36 min.; observed ion =230.0, 232.0.",
+      "nmr": "1H NMR (500 MHz, CHLOROFORM-d) δ 8.07 (d, J=3.0 Hz, 1H), 7.44-7.25 (m, 1H), 7.11 (dd, J=8.8, 3.2 Hz, 1H), 3.76 (d, J=6.5 Hz, 2H), 2.17-2.06 (m, 1H), 1.05 (d, J=6.8 Hz, 6H)."
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page27.scheme0.idx_1",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"\", \"synthetic_description\": \"To a dry 250 mL r.b.flask equipped with a large stir bar was added 2-bromo-5-\\nisobutoxypyridine (12.7g, 55.2 mmol). The flask was placed under N2 atm (vac/fill x3),\\nthen to the flask was added THF (97 ml) and triisopropyl borate (12.9 ml, 55.7 mmol). The\\nsolution was degassed with N2 2x and cooled in a -78 \\u00b0C bath. To the solution was added\\ndropwise n-butyllithium in hexanes (22.3 ml, 55.7 mmol) at a rate necessary to avoid\\nbuild-up of any localized dark discoloration (usually visible in the central vortex with fast\\nstirring). The rate was approximately 0.25-0.50 mL/min. At the completion of the addition,\\nthe solution slowly began to turn dark yellow. Stirring was maintained for 20 min upon\\nwhich the solution was observed to be a light amber. The bath was removed and the\\nsolution was allowed to warm to r.t. with stirring. As the solution warmed, the color\\ndeepened even more significantly. After 3 h the reaction solution was carried forward into\\nthe distillation step.\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "Add, cool, stir, warm",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "2-bromo-5-isobutoxypyridine",
+          "quantity": "12.7g",
+          "moles": "55.2 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "atmosphere",
+          "value": "N2"
+        },
+        {
+          "name": "temperature",
+          "value": "-78°C"
+        },
+        {
+          "name": "addition rate",
+          "value": "0.25-0.50 mL/min"
+        },
+        {
+          "name": "stirring after addition",
+          "value": "20 min at -78°C"
+        },
+        {
+          "name": "warming",
+          "value": "to room temperature"
+        },
+        {
+          "name": "stirring after warming",
+          "value": "3 h at room temperature"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "triisopropyl borate",
+          "quantity": "12.9 ml",
+          "moles": "55.7 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "n-butyllithium",
+          "quantity": "22.3 ml",
+          "moles": "55.7 mmol"
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "THF",
+          "quantity": "97 ml",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "yield_": "",
+      "lcms": "",
+      "nmr": ""
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page27.scheme0.idx_2",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"\", \"synthetic_description\": \"The distillation setup:\\nA 3-neck 250 mL flask equipped with a large stir bar was charged with\\nmethyliminodiacetic acid (16.24 g,110 mmol) and DMSO (97 ml). The center neck was\\nfitted with a pressure-equalizing addition funnel vented to positive N2 pressure. Another\\nneck was fitted with a rubber septum through which a thermocouple was inserted to\\nmonitor internal temperature. The final neck was fitted with a short-path distillation\\naparatus collecting in a 100 mL r.b. flask and vented to a bubbler. This provides a slow\\nstream of N2 carrier gas through the setup and out through the bubbler so that THF vapor\\ndoes not accumulate.\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "setup distillation apparatus and charge with reactant and solvent",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "methyliminodiacetic acid",
+          "quantity": "16.24 g",
+          "moles": "110 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "atmosphere",
+          "value": "positive N2 pressure"
+        }
+      ],
+      "reagents": [],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "DMSO",
+          "quantity": "97 ml",
+          "moles": ""
+        }
+      ],
+      "products": [],
+      "yield_": "",
+      "lcms": "",
+      "nmr": ""
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page27.scheme0.idx_3",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"\", \"synthetic_description\": \"Distillation:\\nThe reaction solution containing the boronate was transfered to the addition funnel.\\nThe 3-neck flask was heated with an oil bath (160 \\u00b0C). Once the internal temperature had\\nreached 115-120 C the boronate solution was added dropwise at a rate necessary to\\nmaintain an internal temp of 115-120 C. The addition took approximately 20 min. The\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "distillation, heat, add dropwise",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "boronate",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "conditions": [
+        {
+          "name": "temperature",
+          "value": "115-120°C (internal), oil bath at 160°C"
+        },
+        {
+          "name": "addition duration",
+          "value": "20 min"
+        }
+      ],
+      "reagents": [],
+      "solvents": [],
+      "products": [],
+      "yield_": "",
+      "lcms": "",
+      "nmr": ""
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page27.scheme0.idx_4",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"\", \"iupac_name\": \"2-(5-isobutoxypyridin-2-yl)-6-methyl-1,3,6,2-dioxazaborocane-4,8-dione\", \"synthetic_description\": \"receiver flask containing the THF was exchanged for an empty 100 mL r.b. flask.The\\nbubbler line connected to the vacuum arm of the distillation apparatus was exchanged for a\\ntube running to the rotovap. The N2 source was closed. The system was placed under\\nvacuum, slowly ramping upon at which the DMSO distilled. The distillation was\\nmaintained until only trace DMSO remained. The residue was dissolved in MeCN upon\\nwhich only the MIDA (white powder) did not dissolve. The mixture was concentrated onto\\ncelite in vacuo. The resulting powder was subjected to SiO2 purification on the Biotage (0-\\n100% EtOAc/ACN gradient over 10 CVs).TLC was performed with 1:1 EA/ACN looking\\nat it with both UV and then KMnO4 staining (to observe biproduct). The fractions\\ncontaining the product were collected and concentrated to afford the desired product 2-(5-\\nisobutoxypyridin-2-yl)-6-methyl-1,3,6,2-dioxazaborocane-4,8-dione (7.3 g,23.85 mmol,\\n43.2% yield)as a white solid.LCMS Method 5:retention time =1.35 min.; observed ion=\\n307.2.lHNMR(500 MHz,Acetone)\\u03b48.45-8.38(m,1H),7.60-7.54(m,1H),7.29(dd,\\nJ=8.4,2.9Hz, 1H),4.34(d,J=16.6Hz,2H),4.17(d,J=16.6Hz,2H),3.90-3.84(m,2H),\\n2.78(s,3H),2.15-2.09(m,1H),1.05(d,J=6.8Hz,6H).\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "distillation, dissolution, concentration, purification (SiO2 column), TLC analysis, collection, concentration",
+      "reactants": [],
+      "conditions": [
+        {
+          "name": "vacuum",
+          "value": "applied during distillation"
+        }
+      ],
+      "reagents": [],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "tetrahydrofuran",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "dimethyl sulfoxide",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "acetonitrile",
+          "quantity": "",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "ethyl acetate",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "2-(5-isobutoxypyridin-2-yl)-6-methyl-1,3,6,2-dioxazaborocane-4,8-dione",
+          "quantity": "7.3 g",
+          "moles": "23.85 mmol"
+        }
+      ],
+      "yield_": "43.2%",
+      "lcms": "Method 5: retention time = 1.35 min.; observed ion = 307.2",
+      "nmr": "1H NMR (500 MHz, Acetone) δ 8.45-8.38 (m, 1H), 7.60-7.54 (m, 1H), 7.29 (dd, J=8.4,2.9Hz, 1H), 4.34 (d, J=16.6Hz, 2H), 4.17 (d, J=16.6Hz, 2H), 3.90-3.84 (m, 2H), 2.78 (s, 3H), 2.15-2.09 (m, 1H), 1.05 (d, J=6.8Hz, 6H)."
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page40.text3.idx_1",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"Example 34\", \"iupac_name\": \"(S)-2-(tert-Butoxy)-2-(5'-fluoro-6'-isobutoxy-6-methyl-4-(7-azaspiro[3.5]nonan-7-yl)-[3,3'-bipyridin]-5-yl)acetic acid\", \"synthetic_description\": \"(S)-2-(tert-Butoxy)-2-(5'-fluoro-6'-isobutoxy-6-methyl-4-(7-azaspiro[3.5]nonan-7-yl)-[3,3'- bipyridin]-5-yl)acetic acid Isopropyl (S)-2-(5-bromo-2-methyl-4-(7-azaspiro[3.5]nonan-7-yl)pyridin-3-yl)-2- (tert-butoxy)acetate(45 mg,0.096 mmol),3-fluoro-2-isobutoxy-5-(4,4,5,5-tetramethyl- 1,3,2-dioxaborolan-2-yl)pyridine (56.8 mg,0.193 mmol), SPhos Pd G3 (7.50 mg,9.63 umol), K3PO4 (61.3 mg,0.289 mmol) were combined under N2. 1,4-Dioxane (1604 ul) and water (321 ul) were added under N2. The reaction was stirred at 80 \\u00b0\\u2103.for 1 hr. The reaction was concentrated, adsorbed onto celite and was purified on silica gel (Biotage, EtOAc/hexanes gradient) to afford isopropyl (S)-2-(tert-butoxy)-2-(5'-fluoro-6'-isobutoxy- 6-methyl-4-(7-azaspiro[3.5]nonan-7-yl)-[3,3'-bipyridin]-5-yl)acetate. The ester was subjected to hydrolysis conditions:(1.5 mL of EtOH,0.1 mL of 5N aq NaOH,100\\u00b0C,3 hrs.).The crude product was purified by Prep-HPLC {Instrument Gilson 281 (PHG-009); Column Xtimate Prep C18 OBD,21.2x250mm,10 um;Mobile Phase A:water(10 mM NH4HCO3);B: MeCN;Gradient 40-68%B in 8.0 min, stop at 13.0 min; Flow Rate (ml/min)30.00} togive (S)-2-(tert-butoxy)-2-(5'-fluoro-6'-isobutoxy-6-methyl-4-(7-azaspiro[3.5]nonan-7-yl)-[3,3'-bipyridin]-5-yl)acetic acid (6.5 mg). LCMS (M+H)= 514.2;Retention time (10 mM NH4HCO3)=2.10.\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "Stir, heat, concentrate, purify, hydrolyze, purify",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "isopropyl (S)-2-(5-bromo-2-methyl-4-(7-azaspiro[3.5]nonan-7-yl)pyridin-3-yl)-2-(tert-butoxy)acetate",
+          "quantity": "45 mg",
+          "moles": "0.096 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "3-fluoro-2-isobutoxy-5-(4,4,5,5-tetramethyl-1,3,2-dioxaborolan-2-yl)pyridine",
+          "quantity": "56.8 mg",
+          "moles": "0.193 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "atmosphere",
+          "value": "N2"
+        },
+        {
+          "name": "temperature",
+          "value": "80°C"
+        },
+        {
+          "name": "duration",
+          "value": "1 hr"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "SPhos Pd G3",
+          "quantity": "7.50 mg",
+          "moles": "9.63 umol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "potassium phosphate",
+          "quantity": "61.3 mg",
+          "moles": "0.289 mmol"
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "1,4-dioxane",
+          "quantity": "1604 ul",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "water",
+          "quantity": "321 ul",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "isopropyl (S)-2-(tert-butoxy)-2-(5'-fluoro-6'-isobutoxy-6-methyl-4-(7-azaspiro[3.5]nonan-7-yl)-[3,3'-bipyridin]-5-yl)acetate",
+          "quantity": "",
+          "moles": ""
+        }
+      ],
+      "yield_": "",
+      "lcms": "",
+      "nmr": ""
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  },
+  {
+    "id": "page40.text3.idx_2",
+    "input": [
+      {
+        "role": "system",
+        "content": "\nYou are a **chemical synthesis expert and a JSON formatting expert**. Your task is to **precisely extract and structure detailed chemical synthesis information from both the main synthesis description and any referenced synthesis descriptions**. You must adhere to **strict, structured, and factual extraction** without guessing missing data. \n\n## Your tasks are:\n1. **Extract the complete reaction data** according to the following structure, focusing ONLY on information **explicitly provided** in the descriptions.\n2. If **\"synthetic_description\"** refers to other compounds' syntheses (via \"Intermediate\", \"Example\", \"Compound\", \"Preparation\"), you MUST **recursively extract** and **integrate** these referenced syntheses as part of the current process.\n3. **Avoid guessing any data**: if a field is not available, return an empty string \"\".\n4. Maintain **strict JSON format** as outlined below.\n\n    \n1. **CompoundBaseInfo**: \n   - **compound_id**: A unique identifier assigned to a specific chemical compound in a chemical synthesis example. It uses terms like 'Intermediate xxx', 'Example xxx', 'Compound xxx', 'Preparation xxx' or 'Intermediate xxx', where 'xxx' is a short string or numerical value. (if no exist, please assign a empty string value to this field).\n   - **iupac_name**: A Union of Pure and Applied Chemistry (IUPAC), a standardized way to refer to chemicals (e.g., 'water', 'sodium chloride'. if no exist, please assign a empty string value to this field).\n   - **quantity**: The amount of the substance, typically expressed in mass (grams) or volume (milliliters), (if no exist, please assign a\n      empty string value to this field).\n   - **moles**: The number of moles of the substance, expressed in mol, (if no exist, please assign a empty string value to this field).\n\n2. **Condition**: For the reaction process, extract the reaction conditions as a list of conditions, each with:\n   - **name**: The type of condition (e.g., 'temperature', 'duration').\n   - **value**: The value of the condition (e.g., '25°C', '10 min').\n\n3. **ReactionInfo**: For the reaction process, extract the following:\n   - **action**: A description of the action performed in the synthesis (e.g., 'stir', 'heat', 'cool', 'mix').\n   - **reactants**: A list of substances involved as reactants in the synthesis.\n   - **conditions**: A list of conditions applied during this step, each with a `name` and `value` (e.g., 'temperature: 25°C', 'duration: 10 minutes').\n   - **reagents**: A list of reagents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **solvents**: A list of solvents used in the synthesis, if applicable. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **products**: A list of products from synthesis description in this specific step. Include the `compound_id`, `iupac_name`, `quantity`, and `moles`.\n   - **yield\\_**: The yield of the reaction step, typically expressed as a percentage (e.g., '85%'). If not provided, use an empty string.\n   - **lcms**: The LCMS (Liquid Chromatography-Mass Spectrometry) data or analysis for the reaction step (if applicable).\n   - **nmr**: The NMR (Nuclear Magnetic Resonance) data or analysis for the reaction step (if applicable).\n\n** Input Format: **\nThe input is a JSON object with the following structure:\n```json\n{\n    \"compound_id\": \"Example 1\", \n    \"iupac_name\": \"xxxxxx\",\n    \"synthetic_description\": \"xxxxx\", \n    \"reference_synthetic_description\": \"\"\n}\n```\n\n** Output Format: **\nThe output should be a JSON object structured as follows:\n```json\n{\n    \"action\": \"Heat\",\n    \"reactants\": [\n    {\n        \"compound_id\": \"Reactant 1\",\n        \"iupac_name\": \"Aldehyde\",\n        \"quantity\": \"10g\",\n        \"moles\": \"0.1 mol\"\n    }\n    ],\n    \"conditions\": [\n    {\n        \"name\": \"temperature\",\n        \"value\": \"150°C\"\n    }\n    ],\n    \"reagents\": [\n    {\n        \"compound_id\": \"Reagent 1\",\n        \"iupac_name\": \"NEt3\",\n        \"quantity\": \"5g\",\n        \"moles\": \"0.05 mol\"\n    }\n    ],\n    \"solvents\": [\n    {\n        \"compound_id\": \"Solvent 1\",\n        \"iupac_name\": \"Ethanol\",\n        \"quantity\": \"100 mL\",\n        \"moles\": \"\"\n    }\n    ],\n    \"products\": [\n    {\n        \"compound_id\": \"Example 1\",\n        \"iupac_name\": \"7-[6-(1-hydroxy-1-methyl-ethyl)-2-pyridyl]-2-[4-(4-methylpiperazin-1-yl)anilino]pyrrolo[2,3-d]pyrimidine-5-carbonitrile\",\n        \"quantity\": \"15g\",\n        \"moles\": \"0.15 mol\"\n    }\n    ],\n    \"yield_\": \"90%\",\n    \"lcms\": \"LCMS data for step 1\",\n    \"nmr\": \"NMR data for step 1\"\n}\n```\n\n### Important Notes\n- **Condition Standardization**: Ensure each condition (e.g., temperature, duration) is described accurately with both `name` and `value`.\n- **Reference Integration**: If the synthesis description refers to another compound's synthesis, extract and merge the referenced synthesis details correctly.\n- **Handling Missing Data**: If any substance, condition, or analytical data is missing, assign an empty string.\n- **Strict JSON Formatting**: Adhere strictly to the output format to ensure consistency.\n- **Optional Fields**: `lcms` and `nmr` should only be included if data is available in the source document.\n- **Clean IUPAC Names**: Remove any content in parentheses, brackets, or following a comma from chemical names for all iupac_name fields.\n  **For example:** `\"chlorotrimethylstannane (1 M in THF)\"` → `\"chlorotrimethylstannane\"`, `\"sodium chloride [99%]\"` → `\"sodium chloride\"`.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"compound_id\": \"Example 35.Step 1\", \"iupac_name\": \"\", \"synthetic_description\": \"WO 2020/003093 PCT/IB2019/055298 (S)-2-tert-Butoxy-2-(5-(2-(2-chlorophenoxy)ethoxy)-4'-(4-ethyl-4-methylpiperidin-1-yl)- 6'-methyl-2,3'-bipyridin-5'-yl)acetic acid: Step 1: To a solution of 2-(2-chlorophenoxy)ethan-1-ol (1.2 g, 6.95 mmol) and TEA (2.91 mL, 20.86 mmol) in THF (20 mL) was added dropwise Ms-Cl (0.813 mL, 10.43 mmol) at 0 \\u00b0C. The reaction mixture was stirred for 20 hours at 25 \\u00b0C. LCMS showed that SM was consumed completely. The reaction mixture was poured into water (20 mL), extracted by EtOAc (30 mL), washed with 1M HCl (5 ml), sat NaHCO<sub>3</sub>, (10 ml) and brine (10 ml). The organic layer was dried over Na2SO<sub>4</sub>, filtered and concentrated to give 2-(2-chlorophenoxy)ethyl methanesulfonate (1.1g, 4.39 mmol, 63.1 % yield) as a brown oil which was used in the next step without purification. Step 2: To a solution of isopropyl (S)-2-(tert-butoxy)-2-(4'-(4-ethyl-4- methylpiperidin-1-yl)-5-hydroxy-6'-methyl-[2,3'-bipyridin]-5'-yl)acetate (50 mg, 0.103 mmol) in DMF (10 mL), 2-(2-chlorophenoxy)ethyl methanesulfonate (78 mg, 0.310 mmol) and was adde K<sub>2</sub>CO<sub>3</sub> (71.4 mg, 0.517 mmol) and the mixture was stirred for 20 hours at 45 \\u00b0C. The mixture was diluted with water and ethyl acetate (30 mL), organic layer separated, washed with brine (20 mL), dried over Na2SO<sub>4</sub> and concentrated to obtain a crude product which was purified by silica gel chromatography eluting with ethyl acetate/petroleum ether (from 10:1 to 1:1) to afford isopropyl (S)-2-(tert-butoxy)-2-(5-(2- (2-chlorophenoxy)ethoxy)-4'-(4-ethyl-4-methylpiperidin-1-yl)-6'-methyl-[2,3'-bipyridin]- 5'-yl)acetate (53 mg, 0.083 mmol, 80 % yield) as a yellow oil. LCMS (M + H) = 683.1; Retention time (10 mM NH<sub>4</sub>HCO<sub>3</sub>) = 2.569.\", \"reference_synthetic_description\": \"\"}"
+      }
+    ],
+    "output": {
+      "action": "Step 1: Add Ms-Cl dropwise to a solution of 2-(2-chlorophenoxy)ethan-1-ol and TEA in THF at 0°C, stir for 20 hours at 25°C. Work up and isolate product. Step 2: Add 2-(2-chlorophenoxy)ethyl methanesulfonate and K2CO3 to a solution of isopropyl (S)-2-(tert-butoxy)-2-(4'-(4-ethyl-4-methylpiperidin-1-yl)-5-hydroxy-6'-methyl-[2,3'-bipyridin]-5'-yl)acetate in DMF, stir for 20 hours at 45°C. Work up and purify product.",
+      "reactants": [
+        {
+          "compound_id": "",
+          "iupac_name": "2-(2-chlorophenoxy)ethan-1-ol",
+          "quantity": "1.2 g",
+          "moles": "6.95 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "isopropyl (S)-2-(tert-butoxy)-2-(4'- (4-ethyl-4-methylpiperidin-1-yl)-5-hydroxy-6'-methyl-[2,3'-bipyridin]-5'-yl)acetate",
+          "quantity": "50 mg",
+          "moles": "0.103 mmol"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "temperature",
+          "value": "0°C (Step 1 addition)"
+        },
+        {
+          "name": "temperature",
+          "value": "25°C (Step 1 stir)"
+        },
+        {
+          "name": "duration",
+          "value": "20 hours (Step 1)"
+        },
+        {
+          "name": "temperature",
+          "value": "45°C (Step 2 stir)"
+        },
+        {
+          "name": "duration",
+          "value": "20 hours (Step 2)"
+        }
+      ],
+      "reagents": [
+        {
+          "compound_id": "",
+          "iupac_name": "triethylamine",
+          "quantity": "2.91 mL",
+          "moles": "20.86 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "methanesulfonyl chloride",
+          "quantity": "0.813 mL",
+          "moles": "10.43 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "potassium carbonate",
+          "quantity": "71.4 mg",
+          "moles": "0.517 mmol"
+        }
+      ],
+      "solvents": [
+        {
+          "compound_id": "",
+          "iupac_name": "tetrahydrofuran",
+          "quantity": "20 mL",
+          "moles": ""
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "dimethylformamide",
+          "quantity": "10 mL",
+          "moles": ""
+        }
+      ],
+      "products": [
+        {
+          "compound_id": "",
+          "iupac_name": "2-(2-chlorophenoxy)ethyl methanesulfonate",
+          "quantity": "1.1 g",
+          "moles": "4.39 mmol"
+        },
+        {
+          "compound_id": "",
+          "iupac_name": "isopropyl (S)-2-(tert-butoxy)-2-(5-(2-(2-chlorophenoxy)ethoxy)-4'- (4-ethyl-4-methylpiperidin-1-yl)-6'-methyl-[2,3'-bipyridin]-5'-yl)acetate",
+          "quantity": "53 mg",
+          "moles": "0.083 mmol"
+        }
+      ],
+      "yield_": "Step 1: 63.1%, Step 2: 80%",
+      "lcms": "LCMS (M + H) = 683.1; Retention time (10 mM NH4HCO3) = 2.569.",
+      "nmr": ""
+    },
+    "model": "GPT",
+    "status": "DONE",
+    "name": "reaction_field",
+    "header_name": ""
+  }
+]

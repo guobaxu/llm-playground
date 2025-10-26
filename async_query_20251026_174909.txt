@@ -1,0 +1,45 @@
+2025-10-26 17:49:09 [INFO] 日志系统初始化完成，日志文件: async_query_20251026_174909.txt
+2025-10-26 17:49:09 [INFO] 开始异步处理Excel文件: AZ_KB/temp_output_real_api_水木-20251026.xlsx
+2025-10-26 17:49:09 [INFO] 最大并发数: 5
+2025-10-26 17:49:09 [INFO] 自适应延迟: 启用
+2025-10-26 17:49:09 [INFO] --------------------------------------------------
+2025-10-26 17:49:10 [INFO] 成功读取Excel文件，共 1465 行数据
+2025-10-26 17:49:10 [INFO] 将处理第 102 到第 601 行
+2025-10-26 17:49:10 [INFO] --------------------------------------------------
+2025-10-26 17:49:10 [INFO] 准备处理 497 个有效问题
+2025-10-26 17:49:10 [INFO] 处理批次 1: 第 1 到第 100 个问题
+2025-10-26 17:50:10 [ERROR] 第 102 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:50:10 [ERROR] 第 104 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:50:10 [ERROR] 第 106 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:50:10 [ERROR] 第 103 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:50:10 [ERROR] 第 105 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:51:11 [ERROR] 第 107 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:51:11 [ERROR] 第 109 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:51:11 [ERROR] 第 111 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:51:11 [ERROR] 第 108 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 17:51:11 [ERROR] 第 110 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:06:57 [ERROR] 第 116 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:06:57 [ERROR] 第 115 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:06:57 [ERROR] 第 114 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:06:57 [ERROR] 第 113 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:06:57 [ERROR] 第 112 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:14:41 [ERROR] 第 117 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:14:41 [ERROR] 第 119 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:14:41 [ERROR] 第 121 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:14:41 [ERROR] 第 118 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:14:41 [ERROR] 第 120 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:15:42 [ERROR] 第 122 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:15:42 [ERROR] 第 124 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:15:42 [ERROR] 第 126 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:15:42 [ERROR] 第 123 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:15:42 [ERROR] 第 125 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:16:43 [ERROR] 第 127 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:16:43 [ERROR] 第 129 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:16:43 [ERROR] 第 131 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:16:43 [ERROR] 第 128 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:16:43 [ERROR] 第 130 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 18:30:16 [ERROR] 第 136 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:30:16 [ERROR] 第 135 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:30:16 [ERROR] 第 134 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:30:16 [ERROR] 第 133 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 18:30:16 [ERROR] 第 132 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]

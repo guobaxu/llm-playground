@@ -1,0 +1,38 @@
+2025-10-26 18:56:39 [INFO] 日志系统初始化完成，日志文件: async_query_20251026_185639.txt
+2025-10-26 18:56:39 [INFO] 开始异步处理Excel文件: AZ_KB/temp_output_real_api_水木-20251026.xlsx
+2025-10-26 18:56:39 [INFO] 最大并发数: 5
+2025-10-26 18:56:39 [INFO] 自适应延迟: 启用
+2025-10-26 18:56:39 [INFO] --------------------------------------------------
+2025-10-26 18:56:39 [INFO] 成功读取Excel文件，共 1465 行数据
+2025-10-26 18:56:39 [INFO] 将处理第 202 到第 301 行
+2025-10-26 18:56:39 [INFO] --------------------------------------------------
+2025-10-26 18:56:39 [INFO] 准备处理 100 个有效问题
+2025-10-26 18:56:39 [INFO] 处理批次 1: 第 1 到第 100 个问题
+2025-10-26 19:34:46 [ERROR] 第 262 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 19:34:52 [ERROR] 第 263 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 19:34:54 [ERROR] 第 264 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 19:50:06 [ERROR] 第 265 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 19:50:06 [ERROR] 第 269 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 19:50:07 [ERROR] 第 266 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 19:50:08 [ERROR] 第 268 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 19:50:10 [ERROR] 第 267 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 20:06:07 [ERROR] 第 270 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:06:07 [ERROR] 第 271 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:06:08 [ERROR] 第 272 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:06:09 [ERROR] 第 273 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:06:11 [ERROR] 第 274 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:22:07 [ERROR] 第 276 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 20:22:07 [ERROR] 第 275 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 20:22:08 [ERROR] 第 277 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 20:22:09 [ERROR] 第 278 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 20:22:11 [ERROR] 第 279 行查询失败: ClientConnectorError: Cannot connect to host 39.106.153.140:8999 ssl:default [Connect call failed ('39.106.153.140', 8999)]
+2025-10-26 20:38:33 [ERROR] 第 280 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:38:33 [ERROR] 第 281 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:38:34 [ERROR] 第 282 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:38:35 [ERROR] 第 283 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:38:37 [ERROR] 第 284 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:39:34 [ERROR] 第 285 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:39:34 [ERROR] 第 286 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:39:58 [ERROR] 第 287 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:39:59 [ERROR] 第 288 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 20:40:01 [ERROR] 第 289 行查询失败: TimeoutError: TimeoutError: 未知错误

@@ -1,0 +1,26 @@
+2025-10-26 22:43:18 [INFO] 日志系统初始化完成，日志文件: async_query_20251026_224318.txt
+2025-10-26 22:43:18 [INFO] 开始异步处理Excel文件: AZ_KB/temp_output_real_api_水木-20251026.xlsx
+2025-10-26 22:43:18 [INFO] 最大并发数: 5
+2025-10-26 22:43:18 [INFO] 自适应延迟: 启用
+2025-10-26 22:43:18 [INFO] --------------------------------------------------
+2025-10-26 22:43:19 [INFO] 成功读取Excel文件，共 1465 行数据
+2025-10-26 22:43:19 [INFO] 将处理第 202 到第 301 行
+2025-10-26 22:43:19 [INFO] --------------------------------------------------
+2025-10-26 22:43:19 [INFO] 准备处理 100 个有效问题
+2025-10-26 22:43:19 [INFO] 处理批次 1: 第 1 到第 100 个问题
+2025-10-26 22:44:29 [ERROR] 第 211 行查询失败: ValueError: Chunk too big
+2025-10-26 22:44:58 [ERROR] 第 210 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:55:50 [ERROR] 第 257 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:56:07 [ERROR] 第 260 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:56:12 [ERROR] 第 261 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:56:16 [ERROR] 第 262 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:59:03 [ERROR] 第 284 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:59:04 [ERROR] 第 285 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:59:05 [ERROR] 第 286 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:59:17 [ERROR] 第 287 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 22:59:27 [ERROR] 第 288 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 23:00:04 [ERROR] 第 289 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 23:00:05 [ERROR] 第 290 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 23:00:06 [ERROR] 第 291 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 23:00:18 [ERROR] 第 292 行查询失败: TimeoutError: TimeoutError: 未知错误
+2025-10-26 23:00:28 [ERROR] 第 293 行查询失败: TimeoutError: TimeoutError: 未知错误
